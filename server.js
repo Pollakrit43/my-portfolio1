@@ -1,52 +1,52 @@
-const express = require("express");
-const router = express.Router();
-const cors = require("cors");
-const nodemailer = require("nodemailer");
+const express = require('express');
+const nodemailer = require('nodemailer');
 
-// server used to send send emails
 const app = express();
-app.use(cors());
+
 app.use(express.json());
-app.use("/", router);
-app.listen(3000, () => console.log("Server Running"));
-console.log(process.env.EMAIL_USER);
-console.log(process.env.EMAIL_PASS);
 
-const contactEmail = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: "pollakritbb@gmail.com",
-    pass: "Pollakrit43BB"
-  },
+// Configure middleware and routes here
+
+const port = 3000;
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
 
-contactEmail.verify((error) => {
-  if (error) {
-    console.log(error);
-  } else {
-    console.log("Ready to Send");
-  }
-});
 
-router.post("/contact", (req, res) => {
-  const name = req.body.firstName + req.body.lastName;
-  const email = req.body.email;
-  const message = req.body.message;
-  const phone = req.body.phone;
-  const mail = {
-    from: name,
-    to: "pollakritbb@gmail.com",
-    subject: "Contact Form Submission - Portfolio",
-    html: `<p>Name: ${name}</p>
-           <p>Email: ${email}</p>
-           <p>Phone: ${phone}</p>
-           <p>Message: ${message}</p>`,
+app.post('/contact', (req, res) => {
+  const { recipient, subject, text } = req.body;
+
+  const transporter = nodemailer.createTransport({
+    service: 'your-email-service',
+    auth: {
+      user: 'your-email@example.com',
+      pass: 'your-email-password',
+    },
+  });
+
+  const mailOptions = {
+    from: 'your-email@example.com',
+    to: recipient,
+    subject,
+    text,
   };
-  contactEmail.sendMail(mail, (error) => {
+
+  transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
-      res.json(error);
+      console.log(error);
+      res.status(500).send('Error sending email');
     } else {
-      res.json({ code: 200, status: "Message Sent" });
+      console.log('Email sent:', info.response);
+      res.status(200).send('Email sent successfully');
     }
   });
+});
+
+
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000/contact'); // Replace with your frontend URL
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  next();
 });

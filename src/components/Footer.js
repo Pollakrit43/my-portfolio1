@@ -1,5 +1,5 @@
 import { Container, Row, Col } from "react-bootstrap";
-import { MailchimpForm } from "./MailchimpForm";
+// import { MailchimpForm } from "./MailchimpForm";
 import logo from "../assets/img/logo.svg";
 import navIcon1 from "../assets/img/nav-icon1.svg";
 import navIcon2 from "../assets/img/nav-icon2.svg";
@@ -21,6 +21,7 @@ export const Footer = () => {
               <a href="#"><img src={navIcon3} alt="Icon" /></a>
             </div>
             <p>Copyright 2022. All Rights Reserved</p>
+            <a href="https://www.freepik.com/free-vector/percentage-indicators-collection_1188395.htm#query=percentage&position=0&from_view=keyword&track=sph">Image by alvaro_cabrera</a> on Freepik
           </Col>
         </Row>
       </Container>
