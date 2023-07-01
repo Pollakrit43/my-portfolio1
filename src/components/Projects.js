@@ -2,6 +2,7 @@ import { Container, Row, Col, Tab, Nav } from "react-bootstrap";
 import { ProjectCard } from "./ProjectCard";
 import frontendImg1 from "../assets/img/frontend-img1.png";
 import frontendImg2 from "../assets/img/frontend-img2.png";
+import frontendImg3 from "../assets/img/frontend-img3.png";
 import "animate.css";
 import TrackVisibility from "react-on-screen";
 
@@ -16,6 +17,11 @@ export const Projects = () => {
       title: "react-myportfolio",
       description: "Frontend Developer",
       imgUrl: frontendImg2,
+    },
+    {
+      title: "netflix-clone-responsive",
+      description: "Frontend Developer",
+      imgUrl: frontendImg3,
     },
   ];
 
