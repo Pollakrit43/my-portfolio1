@@ -23,6 +23,12 @@ export const Projects = () => {
       description: "Frontend Developer",
       imgUrl: frontendImg3,
     },
+    {
+      title: "react-bb-restaurant-frontend",
+      description: "Frontend Developer",
+      imgUrl:
+        "https://camo.githubusercontent.com/5e2fdd495f94c23aa4fd1d0d7925346c493f9b5ea87b42078b6e92a5148521f1/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3930393132323337343439323838393134382f313134383233333634393037393230393939342f696d6167652e706e67",
+    },
   ];
 
   return (
@@ -38,9 +44,7 @@ export const Projects = () => {
                   }
                 >
                   <h2>Projects</h2>
-                  <p>
-                    
-                  </p>
+                  <p></p>
                   <Tab.Container id="projects-tabs" defaultActiveKey="first">
                     <Nav
                       variant="pills"
